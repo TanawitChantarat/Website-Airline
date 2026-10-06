@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KookKook Airline — Smart & Vibe Flight Experience</title>
+  
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- FLOATING GLASS NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      
+      <!-- Brand Logo Container -->
+      <div class="brand-logo-container" onclick="switchTab('booking')">
+        <img src="D:\Website Airline\pic\Flighty.png" alt="KookKook Airline Logo" class="brand-logo-img">
+        <div class="brand-text-group">
+          <div class="brand-title-row">
+            <span class="brand-title">KookKook</span>
+            <span class="brand-subtitle">AIRLINE</span>
+          </div>
+          <span class="brand-vibe-badge">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> FlightMate
+          </span>
+        </div>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="nav-menu">
+        <button id="nav-booking" class="nav-btn active" onclick="switchTab('booking')">
+          <i class="fa-solid fa-plane-departure"></i> <span data-i18n="navBooking">จองตั๋ว</span>
+        </button>
+        <button id="nav-explore" class="nav-btn" onclick="switchTab('explore')">
+          <i class="fa-solid fa-compass"></i> <span data-i18n="navExplore">สำรวจทริป</span>
+        </button>
+        <button id="nav-ticket" class="nav-btn" onclick="switchTab('ticket')">
+          <i class="fa-solid fa-ticket"></i> <span data-i18n="navTicket">ตั๋วของฉัน</span> <span id="ticketBadge" class="badge-dot hidden"></span>
+        </button>
+      </nav>
+
+      <!-- Language & Auth Actions -->
+      <div class="nav-actions">
+        <!-- Language Switcher Button -->
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="lang-btn" title="Change Language">
+          <span class="lang-flag">🇹🇭</span> <span id="langText">TH</span>
+        </button>
+
+        <button onclick="openModal('login')" class="btn-primary">
+          <i class="fa-solid fa-user"></i> <span data-i18n="loginBtn">เข้าสู่ระบบ</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="main-content">
+
+    <!-- ================= TAB 1: BOOKING ================= -->
+    <section id="tab-booking" class="tab-content active">
+      <!-- HERO SEARCH BANNER -->
+      <div class="card hero-card">
+        <div class="hero-header">
+          <span class="brand-vibe-badge" style="margin-bottom: 0.8rem; font-size: 0.75rem; padding: 4px 12px;">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> AI Flight Assistant
+          </span>
+          <h1 class="hero-title" data-i18n="heroTitle">ค้นหาเที่ยวบินที่ใช่ในแบบคุณ</h1>
+          <p class="hero-desc" data-i18n="heroDesc">YOUR FLIGHT, YOUR WAY — ค้นหาเที่ยวบินตาม Vibe หรือเช็กทิศมงคลประจำราศี</p>
+        </div>
+
+        <!-- AI Prompt Search Bar -->
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-sparkles search-icon"></i>
+            <input id="promptInput" type="text" placeholder="พิมพ์สิ่งที่คุณต้องการ เช่น 'อยากไปเชียงใหม่ศุกร์นี้ บินเช้า สายมู'">
+          </div>
+          <button onclick="handleAIPromptSearch()" class="btn-highlight">
+            <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="searchBtn">ค้นหาด้วย AI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- POPULAR ROUTES -->
+      <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--kk-dark);">
+        <i class="fa-solid fa-fire-flame-curved" style="color: var(--kk-highlight);"></i> <span data-i18n="popularTitle">เที่ยวบินยอดนิยม</span>
+      </h2>
+      
+      <div class="grid-3">
+        <!-- Flight 1 -->
+        <div class="card flight-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+              <span class="badge-blue"><span data-i18n="bangkok">กรุงเทพฯ</span> (DMK) ➔ <span data-i18n="chiangmai">เชียงใหม่</span> (CNX)</span>
+              <span style="font-size: 0.8rem; color: #777;">KK-104</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 700;" data-i18n="flight1Title">บินเช้า รับพลังบวกดอยสุเทพ</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;"><span data-i18n="dep">ออกเดินทาง</span> 06:30 - <span data-i18n="arr">ถึง</span> 07:45</p>
+            <div class="price-tag">1,250 <span data-i18n="currency">บาท</span> <span style="font-size: 0.8rem; font-weight: 400; color: #888;" data-i18n="perPerson">/ ท่าน</span></div>
+          </div>
+          <button onclick="bookFlight('KK-104', 'DMK-CNX', 1250)" class="btn-secondary" style="margin-top: 1.2rem; width: 100%;" data-i18n="bookBtn">
+            สำรองที่นั่งนี้
+          </button>
+        </div>
+
+        <!-- Flight 2 -->
+        <div class="card flight-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+              <span class="badge-blue"><span data-i18n="bangkok">กรุงเทพฯ</span> (DMK) ➔ <span data-i18n="phuket">ภูเก็ต</span> (HKT)</span>
+              <span style="font-size: 0.8rem; color: #777;">KK-208</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 700;" data-i18n="flight2Title">ทริปทะเลรับลมเย็นส้นเย็น</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;"><span data-i18n="dep">ออกเดินทาง</span> 14:15 - <span data-i18n="arr">ถึง</span> 15:40</p>
+            <div class="price-tag">1,690 <span data-i18n="currency">บาท</span> <span style="font-size: 0.8rem; font-weight: 400; color: #888;" data-i18n="perPerson">/ ท่าน</span></div>
+          </div>
+          <button onclick="bookFlight('KK-208', 'DMK-HKT', 1690)" class="btn-secondary" style="margin-top: 1.2rem; width: 100%;" data-i18n="bookBtn">
+            สำรองที่นั่งนี้
+          </button>
+        </div>
+
+        <!-- Flight 3 -->
+        <div class="card flight-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+              <span class="badge-blue"><span data-i18n="bangkok">กรุงเทพฯ</span> (DMK) ➔ <span data-i18n="khonkaen">ขอนแก่น</span> (KKC)</span>
+              <span style="font-size: 0.8rem; color: #777;">KK-305</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 700;" data-i18n="flight3Title">บินกลับบ้านสบายใจ สไตล์ไทบ้าน</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 0.3rem;"><span data-i18n="dep">ออกเดินทาง</span> 18:00 - <span data-i18n="arr">ถึง</span> 19:05</p>
+            <div class="price-tag">990 <span data-i18n="currency">บาท</span> <span style="font-size: 0.8rem; font-weight: 400; color: #888;" data-i18n="perPerson">/ ท่าน</span></div>
+          </div>
+          <button onclick="bookFlight('KK-305', 'DMK-KKC', 990)" class="btn-secondary" style="margin-top: 1.2rem; width: 100%;" data-i18n="bookBtn">
+            สำรองที่นั่งนี้
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: EXPLORE ================= -->
+    <section id="tab-explore" class="tab-content hidden">
+      <div class="card">
+        <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="exploreTitle">✨ ค้นหาจุดหมายตามดวง & Vibe Travel</h2>
+        <p style="color: #666; margin-bottom: 1.5rem;" data-i18n="exploreDesc">เลือกการเดินทางที่ส่งเสริมพลังงานบวกและเข้ากับสไตล์คุณที่สุด</p>
+        
+        <div class="grid-2">
+          <div class="vibe-box" onclick="quickSearchVibe('spiritual')">
+            <i class="fa-solid fa-hands-praying vibe-icon"></i>
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700;" data-i18n="vibe1Title">สายมู & เสริมพลังชีวิต</h4>
+              <p style="font-size: 0.85rem; color: #666;" data-i18n="vibe1Desc">เน้นไหว้พระ ขอพรโชคลาภ การงาน งานปัง เงินเข้า</p>
+            </div>
+          </div>
+          <div class="vibe-box" onclick="quickSearchVibe('relax')">
+            <i class="fa-solid fa-umbrella-beach vibe-icon"></i>
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight: 700;" data-i18n="vibe2Title">สายชิลล์ & ฮีลใจ</h4>
+              <p style="font-size: 0.85rem; color: #666;" data-i18n="vibe2Desc">รับลมทะเล นั่งคาเฟ่ ปล่อยใจไปกับธรรมชาติ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: TICKET ================= -->
+    <section id="tab-ticket" class="tab-content hidden">
+      <div class="ticket-wrapper">
+        <div class="ticket-card">
+          <div class="ticket-header">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-plane" style="color: var(--kk-highlight);"></i>
+              <span style="font-weight: 700; letter-spacing: 1px;">BOARDING PASS</span>
+            </div>
+            <span id="ticketFlightCode" style="font-weight: 700; color: var(--kk-highlight);">KK-104</span>
+          </div>
+
+          <div class="ticket-body">
+            <div style="font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: 600;" data-i18n="passengerLbl">ผู้โดยสาร / Passenger</div>
+            <div id="ticketPassenger" style="font-size: 1.1rem; font-weight: 700; color: var(--kk-dark);" data-i18n="passengerVal">คุณผู้โดยสารเกียรติยศ</div>
+
+            <div class="route-box">
+              <div style="text-align: left;">
+                <div class="city-code" id="originCode">DMK</div>
+                <div style="font-size: 0.75rem; color: #666;" data-i18n="bangkok">กรุงเทพฯ</div>
+              </div>
+              <i class="fa-solid fa-plane route-arrow" style="color: var(--kk-highlight);"></i>
+              <div style="text-align: right;">
+                <div class="city-code" id="destCode">CNX</div>
+                <div style="font-size: 0.75rem; color: #666;" id="destName" data-i18n="chiangmai">เชียงใหม่</div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 1rem;">
+              <div>
+                <span style="color: #888; display: block; font-size: 0.75rem;" data-i18n="depTimeLbl">เวลาเดินทาง</span>
+                <strong id="ticketTime">06:30</strong>
+              </div>
+              <div>
+                <span style="color: #888; display: block; font-size: 0.75rem;" data-i18n="seatLbl">ที่นั่ง / Seat</span>
+                <strong id="ticketSeat">12A</strong>
+              </div>
+              <div>
+                <span style="color: #888; display: block; font-size: 0.75rem;" data-i18n="statusLbl">สถานะ</span>
+                <strong style="color: var(--kk-green);" data-i18n="statusVal">ยืนยันแล้ว</strong>
+              </div>
+            </div>
+
+            <div class="barcode-area">
+              <div class="barcode-lines">||| | |||| ||| || ||||| ||| ||| ||||</div>
+              <div style="font-size: 0.7rem; color: #888; margin-top: 4px;" id="ticketRef">REF: KK-982371-TH</div>
+            </div>
+          </div>
+
+          <div class="status-banner">
+            <i class="fa-solid fa-circle-check"></i> <span data-i18n="gateReady">พร้อมสำหรับการเดินทาง (Show to Gate)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= MODAL POPUP DIALOG ================= -->
+  <div id="demoModal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <button onclick="closeModal()" class="modal-close" aria-label="Close Modal">&times;</button>
+      <div id="modalContent">
+        <!-- Content inserted dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

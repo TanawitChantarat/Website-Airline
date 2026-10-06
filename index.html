@@ -17,7 +17,7 @@
       
       <!-- Brand Logo Container -->
       <div class="brand-logo-container" onclick="switchTab('booking')">
-        <img src="D:\Website Airline\pic\Flighty.png" alt="KookKook Airline Logo" class="brand-logo-img">
+        <img src="/pic/Flighty.png" alt="KookKook Airline Logo" class="brand-logo-img">
         <div class="brand-text-group">
           <div class="brand-title-row">
             <span class="brand-title">KookKook</span>
@@ -36,6 +36,9 @@
         </button>
         <button id="nav-explore" class="nav-btn" onclick="switchTab('explore')">
           <i class="fa-solid fa-compass"></i> <span data-i18n="navExplore">สำรวจทริป</span>
+        </button>
+        <button id="nav-services" class="nav-btn" onclick="switchTab('services')">
+          <i class="fa-solid fa-bell-concierge"></i> <span data-i18n="navServices">บริการสมาร์ท</span> <span class="badge-dot"></span>
         </button>
         <button id="nav-ticket" class="nav-btn" onclick="switchTab('ticket')">
           <i class="fa-solid fa-ticket"></i> <span data-i18n="navTicket">ตั๋วของฉัน</span> <span id="ticketBadge" class="badge-dot hidden"></span>
@@ -72,15 +75,22 @@
           <p class="hero-desc" data-i18n="heroDesc">YOUR FLIGHT, YOUR WAY — ค้นหาเที่ยวบินตาม Vibe หรือเช็กทิศมงคลประจำราศี</p>
         </div>
 
-        <!-- AI Prompt Search Bar -->
-        <div class="search-box">
-          <div class="search-input-wrapper">
-            <i class="fa-solid fa-sparkles search-icon"></i>
-            <input id="promptInput" type="text" placeholder="พิมพ์สิ่งที่คุณต้องการ เช่น 'อยากไปเชียงใหม่ศุกร์นี้ บินเช้า สายมู'">
+        <!-- AI Prompt Search Bar with Autocomplete -->
+        <div class="search-box-wrapper">
+          <div class="search-box">
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-sparkles search-icon"></i>
+              <input id="promptInput" type="text" autocomplete="off" placeholder="พิมพ์สิ่งที่คุณต้องการ เช่น 'เชียงใหม่', 'ภูเก็ต', 'สายมู'">
+            </div>
+            <button onclick="handleAIPromptSearch()" class="btn-highlight">
+              <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="searchBtn">ค้นหาด้วย AI</span>
+            </button>
           </div>
-          <button onclick="handleAIPromptSearch()" class="btn-highlight">
-            <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="searchBtn">ค้นหาด้วย AI</span>
-          </button>
+
+          <!-- AUTOCOMPLETE SUGGESTIONS DROPDOWN -->
+          <div id="autocompleteList" class="autocomplete-dropdown hidden">
+            <!-- Dynamic Items Rendered by JS -->
+          </div>
         </div>
       </div>
 
@@ -165,7 +175,169 @@
       </div>
     </section>
 
-    <!-- ================= TAB 3: TICKET ================= -->
+    <!-- ================= TAB 3: SMART SERVICES (4 NEW FEATURES) ================= -->
+    <section id="tab-services" class="tab-content hidden">
+      
+      <!-- 📌 FEATURE 1 & 3: LIVE GATE ALERT & SMART DISRUPTION -->
+      <div class="card feature-alert-card">
+        <div class="feature-header-row">
+          <div class="feature-title-group">
+            <span class="live-pill"><i class="fa-solid fa-tower-broadcast fa-spin"></i> LIVE REAL-TIME</span>
+            <h2 style="font-size: 1.3rem; font-weight: 700;" data-i18n="liveGateTitle">Live Gate Alert & สถานะเที่ยวบิน</h2>
+          </div>
+          <button onclick="toggleDisruptionSim()" class="btn-demo-toggle">
+            <i class="fa-solid fa-vial"></i> <span data-i18n="demoDelayBtn">จําลองเหตุการณ์ดีเลย์</span>
+          </button>
+        </div>
+
+        <div id="gateStatusBox" class="gate-status-box normal">
+          <div class="gate-info-main">
+            <div class="flight-tag">KK-104 (DMK ➔ CNX)</div>
+            <div class="gate-number-display">
+              <span class="gate-lbl" data-i18n="gateLbl">GATE</span>
+              <span id="gateNum" class="gate-val">C04</span>
+            </div>
+            <div class="gate-status-pill status-boarding" id="gateStatusPill" data-i18n="statusBoarding">
+              กำลังเรียกขึ้นเครื่อง (Boarding Soon)
+            </div>
+          </div>
+          <div class="gate-time-details">
+            <div><i class="fa-regular fa-clock"></i> <span data-i18n="boardTime">เวลาขึ้นเครื่อง: 06:10 น.</span></div>
+            <div><i class="fa-solid fa-plane-departure"></i> <span data-i18n="depTime">เวลาออก: 06:30 น.</span></div>
+          </div>
+        </div>
+
+        <!-- FEATURE 3: SMART DISRUPTION COMPENSATE BANNER -->
+        <div id="disruptionBanner" class="disruption-banner hidden">
+          <div class="disruption-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="disruption-text">
+            <h4 data-i18n="disruptTitle">เที่ยวบินดีเลย์ 45 นาที (เหตุจากสภาพอากาศ)</h4>
+            <p data-i18n="disruptDesc">ระบบสมาร์ทมอบคูปองชดเชยพิเศษทานอาหาร/เครื่องดื่ม หรือ Lounge 300 บาท ให้คุณทันที</p>
+          </div>
+          <button onclick="claimCompensationVoucher()" class="btn-claim-voucher">
+            <i class="fa-solid fa-gift"></i> <span data-i18n="claimBtn">กดรับคูปองชดเชย</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 📌 FEATURE 2: PRE-ORDER MEAL (สั่งอาหารล่วงหน้า) -->
+      <div class="card">
+        <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem;" data-i18n="preorderTitle">
+          <i class="fa-solid fa-utensils" style="color: var(--kk-highlight);"></i> Pre-Order Meals & Special Services
+        </h2>
+        <p style="color: #666; font-size: 0.88rem; margin-bottom: 1.5rem;" data-i18n="preorderDesc">
+          สั่งอาหารและบริการล่วงหน้า เลือกรสชาติที่ชอบ เสิร์ฟตรงถึงที่นั่งในเที่ยวบินของคุณ
+        </p>
+
+        <form id="mealOrderForm" onsubmit="handleMealSubmit(event)">
+          <!-- Step 1: Flight Selection Dropdown -->
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-plane"></i> <span data-i18n="selectFlightLbl">เลือกเที่ยวบินที่จะให้เอาอาหารไป Serve:</span></label>
+            <select id="mealFlightSelect" class="custom-select" required>
+              <option value="KK-104">KK-104 : กรุงเทพฯ (DMK) ➔ เชียงใหม่ (CNX) [06:30]</option>
+              <option value="KK-208">KK-208 : กรุงเทพฯ (DMK) ➔ ภูเก็ต (HKT) [14:15]</option>
+              <option value="KK-305">KK-305 : กรุงเทพฯ (DMK) ➔ ขอนแก่น (KKC) [18:00]</option>
+            </select>
+          </div>
+
+          <!-- Step 2: Meal Category Selection (Normal vs Special) -->
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-bowl-food"></i> <span data-i18n="mealCategoryLbl">ประเภทมื้ออาหาร (Meal Type):</span></label>
+            <div class="category-radio-group">
+              <label class="radio-card active">
+                <input type="radio" name="mealType" value="normal" checked onclick="switchMealCategory('normal')">
+                <span class="radio-title" data-i18n="normalMealRadio">Normal Meal (อาหารมาตรฐาน)</span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="mealType" value="special" onclick="switchMealCategory('special')">
+                <span class="radio-title" data-i18n="specialMealRadio">Special Meal (อาหารพิเศษ)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 3A: Normal Meals Options -->
+          <div id="normalMealContainer" class="meal-options-container">
+            <div class="grid-2">
+              <label class="meal-item-card">
+                <input type="radio" name="normalMealSelection" value="ข้าวกะเพราไก่ไข่ดาว" checked>
+                <div class="meal-item-info">
+                  <div class="meal-name" data-i18n="meal1Name">ข้าวกะเพราไก่ไข่ดาว (Basil Chicken Rice)</div>
+                  <div class="meal-sub" data-i18n="meal1Sub">รสไทยแท้ เสิร์ฟพร้อมผลไม้สดตามฤดูกาล</div>
+                </div>
+              </label>
+              <label class="meal-item-card">
+                <input type="radio" name="normalMealSelection" value="พาสต้าซอสมะเขือเทศชีส">
+                <div class="meal-item-info">
+                  <div class="meal-name" data-i18n="meal2Name">พาสต้าซอสมะเขือเทศชีส (Tomato Cheese Pasta)</div>
+                  <div class="meal-sub" data-i18n="meal2Sub">สไตล์อิตาเลียนหอมชีส นุ่มกลมกล่อม</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 3B: Special Meals Dropdown (Code : Description) -->
+          <div id="specialMealContainer" class="form-group hidden">
+            <label class="form-label" data-i18n="specialMealDropdownLbl">เลือกโค้ดอาหารพิเศษ (Special Meal Code : Description):</label>
+            <select id="specialMealSelect" class="custom-select">
+              <option value="VGML : Vegetarian Vegan Meal (อาหารมังสวิรัติแบบวีแกน)">VGML : Vegetarian Vegan Meal (อาหารมังสวิรัติแบบวีแกน)</option>
+              <option value="VOML : Vegetarian Oriental Meal (อาหารมังสวิรัติสไตล์จีน)">VOML : Vegetarian Oriental Meal (อาหารมังสวิรัติสไตล์จีน)</option>
+              <option value="KSML : Kosher Meal (อาหารคอเชอร์ ตามหลักศาสนายิว)">KSML : Kosher Meal (อาหารคอเชอร์ ตามหลักศาสนายิว)</option>
+              <option value="MOML : Muslim Meal (อาหารฮาลาล สำหรับชาวมุสลิม)">MOML : Muslim Meal (อาหารฮาลาล สำหรับชาวมุสลิม)</option>
+              <option value="DBML : Diabetic Meal (อาหารสำหรับผู้ป่วยเบาหวาน)">DBML : Diabetic Meal (อาหารสำหรับผู้ป่วยเบาหวาน)</option>
+              <option value="GFML : Gluten-Free Meal (อาหารปราศจากกลูเตน)">GFML : Gluten-Free Meal (อาหารปราศจากกลูเตน)</option>
+              <option value="AVML : Asian Vegetarian Meal (อาหารมังสวิรัติอินเดีย/เอเชีย)">AVML : Asian Vegetarian Meal (อาหารมังสวิรัติอินเดีย/เอเชีย)</option>
+              <option value="HNML : Hindu Non-Vegetarian Meal (อาหารฮินดู)">HNML : Hindu Non-Vegetarian Meal (อาหารฮินดู)</option>
+              <option value="BBML : Baby Meal (อาหารสำหรับเด็กทารก)">BBML : Baby Meal (อาหารสำหรับเด็กทารก)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-highlight" style="margin-top: 1.2rem; width: 100%; justify-content: center;">
+            <i class="fa-solid fa-cart-shopping"></i> <span data-i18n="confirmMealBtn">ยืนยันการสั่งอาหารล่วงหน้า</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- 📌 FEATURE 4: ON-DEMAND HELP (ขอความช่วยเหลือพิเศษ) -->
+      <div class="card">
+        <div style="margin-bottom: 1.2rem;">
+          <h2 style="font-size: 1.3rem; font-weight: 700;" data-i18n="ondemandTitle">
+            <i class="fa-solid fa-hands-holding-child" style="color: var(--kk-highlight);"></i> On-Demand Help (ขอความช่วยเหลือพิเศษ)
+          </h2>
+          <p style="color: #666; font-size: 0.88rem;" data-i18n="ondemandDesc">
+            กดเรียกรถรับ-ส่ง ขอรถเข็น หรือสอบถามเส้นทางได้ทันทีหลังจากผ่านจุดตรวจค้นสนามบิน
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Request Buggy -->
+          <div class="help-action-card" onclick="requestAssistance('buggy')">
+            <div class="help-icon"><i class="fa-solid fa-car-side"></i></div>
+            <h4 data-i18n="buggyTitle">รถบัคกี้ (Buggy Service)</h4>
+            <p data-i18n="buggyDesc">เรียกรถบัคกี้ไปรับที่จุดตรวจ มุ่งตรงไปยัง Gate / Lounge</p>
+            <button class="btn-request" data-i18n="requestBtn">Request Assistance</button>
+          </div>
+
+          <!-- Request Wheelchair -->
+          <div class="help-action-card" onclick="requestAssistance('wheelchair')">
+            <div class="help-icon"><i class="fa-solid fa-wheelchair"></i></div>
+            <h4 data-i18n="wheelchairTitle">รถเข็นวีลแชร์ (Wheelchair)</h4>
+            <p data-i18n="wheelchairDesc">ขอพนักงานพร้อมรถเข็นดูแลตลอดการเดินทางในสนามบิน</p>
+            <button class="btn-request" data-i18n="requestBtn">Request Assistance</button>
+          </div>
+
+          <!-- Lounge Directions -->
+          <div class="help-action-card" onclick="requestAssistance('lounge')">
+            <div class="help-icon"><i class="fa-solid fa-couch"></i></div>
+            <h4 data-i18n="loungeTitle">เส้นทางไป Lounge</h4>
+            <p data-i18n="loungeDesc">สอบถามและนำทางไปยัง KookKook Executive Lounge</p>
+            <button class="btn-request" data-i18n="navLoungeBtn">ดูแผนที่ & เส้นทาง</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= TAB 4: TICKET ================= -->
     <section id="tab-ticket" class="tab-content hidden">
       <div class="ticket-wrapper">
         <div class="ticket-card">
@@ -208,6 +380,11 @@
               </div>
             </div>
 
+            <!-- Ordered Meal Badge Display -->
+            <div id="ticketMealBadge" class="ticket-meal-tag hidden">
+              <i class="fa-solid fa-utensils"></i> <span id="ticketMealText"> Pre-ordered Meal: Basil Chicken</span>
+            </div>
+
             <div class="barcode-area">
               <div class="barcode-lines">||| | |||| ||| || ||||| ||| ||| ||||</div>
               <div style="font-size: 0.7rem; color: #888; margin-top: 4px;" id="ticketRef">REF: KK-982371-TH</div>
@@ -215,7 +392,7 @@
           </div>
 
           <div class="status-banner">
-            <i class="fa-solid fa-circle-check"></i> <span data-i18n="gateReady">พร้อมสำหรับการเดินทาง (Show to Gate)</span>
+            <i class="fa-solid fa-circle-check"></i> <span data-i18n="gateReady">พร้อมสำหรับการเดินทาง (Gate C04)</span>
           </div>
         </div>
       </div>

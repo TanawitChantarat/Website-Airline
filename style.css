@@ -159,6 +159,7 @@ body::after {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  position: relative;
 }
 
 .nav-btn:hover {
@@ -258,14 +259,14 @@ body::after {
   transition: all 0.3s ease;
 }
 
-/* HERO CARD */
+/* HERO CARD & SEARCH CONTAINER */
 .hero-card {
   background: radial-gradient(circle at 90% 10%, rgba(242, 151, 39, 0.18) 0%, transparent 45%),
               linear-gradient(135deg, #0F2342 0%, #1B365D 100%);
   color: #FFFFFF;
   padding: 3rem 2.2rem;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -282,7 +283,12 @@ body::after {
   margin-bottom: 1.8rem;
 }
 
-/* SEARCH BOX */
+/* SEARCH WRAPPER & BOX */
+.search-box-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .search-box {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px);
@@ -341,6 +347,74 @@ body::after {
 .btn-highlight:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(242, 151, 39, 0.5);
+}
+
+/* 🌟 AUTOCOMPLETE DROPDOWN */
+.autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #252D3A;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  z-index: 200;
+  padding: 6px;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #FFFFFF;
+}
+
+.suggestion-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.suggestion-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--kk-highlight);
+  flex-shrink: 0;
+}
+
+.suggestion-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-title {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: #F1F5F9;
+  line-height: 1.2;
+}
+
+.suggestion-subtitle {
+  font-size: 0.78rem;
+  color: #94A3B8;
+  margin-top: 3px;
 }
 
 /* FLIGHT CARDS */
@@ -417,6 +491,350 @@ body::after {
   background: rgba(242, 151, 39, 0.12);
   padding: 0.8rem;
   border-radius: 14px;
+}
+
+/* 🌟 NEW FEATURE 1: LIVE GATE ALERT STYLES */
+.feature-alert-card {
+  background: linear-gradient(135deg, #1B365D 0%, #0F2342 100%);
+  color: #FFFFFF;
+}
+
+.feature-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.live-pill {
+  background: rgba(255, 87, 87, 0.2);
+  color: var(--kk-red);
+  border: 1px solid var(--kk-red);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-demo-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.45rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-demo-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.gate-status-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.gate-status-box.delayed {
+  border-color: var(--kk-red);
+  background: rgba(255, 87, 87, 0.12);
+}
+
+.flight-tag {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.gate-number-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.2rem 0;
+}
+
+.gate-lbl {
+  font-size: 0.9rem;
+  color: var(--kk-highlight);
+  font-weight: 700;
+}
+
+.gate-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.gate-status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-boarding {
+  background: var(--kk-green);
+  color: #FFFFFF;
+}
+
+.status-delayed {
+  background: var(--kk-red);
+  color: #FFFFFF;
+  animation: pulseRed 1.5s infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.gate-time-details {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* 🌟 NEW FEATURE 3: SMART DISRUPTION BANNER */
+.disruption-banner {
+  margin-top: 1.2rem;
+  background: linear-gradient(135deg, #FF5757 0%, #D93838 100%);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  box-shadow: 0 10px 25px rgba(255, 87, 87, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.disruption-icon {
+  font-size: 2rem;
+  color: #FFFFFF;
+}
+
+.disruption-text h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.disruption-text p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-claim-voucher {
+  background: #FFFFFF;
+  color: var(--kk-red);
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.btn-claim-voucher:hover {
+  transform: scale(1.03);
+  background: #FFF5F5;
+}
+
+/* 🌟 NEW FEATURE 2: PRE-ORDER MEAL FORM STYLES */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--kk-dark);
+  margin-bottom: 0.5rem;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(27, 54, 93, 0.2);
+  background: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--kk-dark);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.custom-select:focus {
+  border-color: var(--kk-highlight);
+  box-shadow: 0 0 0 3px rgba(242, 151, 39, 0.2);
+}
+
+.category-radio-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.radio-card {
+  flex: 1;
+  background: var(--kk-light);
+  border: 2px solid rgba(27, 54, 93, 0.1);
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.2s ease;
+}
+
+.radio-card:hover {
+  border-color: var(--kk-highlight);
+}
+
+.radio-card input[type="radio"]:checked + .radio-title {
+  color: var(--kk-highlight);
+  font-weight: 700;
+}
+
+.radio-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--kk-dark);
+}
+
+.meal-item-card {
+  background: var(--kk-light);
+  border: 1px solid rgba(27, 54, 93, 0.1);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.meal-item-card:hover {
+  background: #FFFFFF;
+  border-color: var(--kk-highlight);
+  box-shadow: 0 4px 12px rgba(27, 54, 93, 0.08);
+}
+
+.meal-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--kk-dark);
+}
+
+.meal-sub {
+  font-size: 0.78rem;
+  color: #666;
+}
+
+/* 🌟 NEW FEATURE 4: ON-DEMAND HELP CARDS */
+.help-action-card {
+  background: var(--kk-light);
+  border: 1px solid rgba(27, 54, 93, 0.1);
+  border-radius: 18px;
+  padding: 1.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-action-card:hover {
+  background: #FFFFFF;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--kk-highlight);
+}
+
+.help-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(242, 151, 39, 0.12);
+  color: var(--kk-highlight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.help-action-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.help-action-card p {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.btn-request {
+  background: var(--kk-dark);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.help-action-card:hover .btn-request {
+  background: var(--kk-highlight);
+}
+
+/* TICKET MEAL TAG */
+.ticket-meal-tag {
+  margin-top: 0.8rem;
+  background: rgba(0, 191, 99, 0.12);
+  color: var(--kk-green);
+  border: 1px dashed var(--kk-green);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* 🌟 REALISTIC BOARDING PASS TICKET */
@@ -534,7 +952,7 @@ body::after {
   background: #FFFFFF;
   border-radius: 24px;
   padding: 2rem;
-  max-width: 420px;
+  max-width: 440px;
   width: 100%;
   position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);

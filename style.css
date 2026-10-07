@@ -997,3 +997,657 @@ body::after {
 /* Grids */
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+
+/* คลาสสำหรับซ่อน Element */
+.hidden {
+  display: none !important;
+}
+
+/* ตกแต่ง Modal Background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ================= POPUP GENERAL STYLES ================= */
+.hidden {
+  display: none !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Modal Light Card (Popup 1) */
+.modal-card-light {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: inherit;
+}
+
+/* Modal Dark Card (Popup 2) */
+.modal-card-dark {
+  background: #0B132B;
+  border-radius: 28px;
+  padding: 28px;
+  max-width: 880px;
+  width: 100%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  color: #FFFFFF;
+}
+
+/* ================= POPUP 1 STYLES ================= */
+.pills-toggle {
+  background: #F1F5F9;
+  border-radius: 40px;
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.pill-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.pill-btn.active-gold {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group-custom label {
+  display: block;
+  font-size: 0.82rem;
+  color: #64748B;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  gap: 10px;
+  color: #F59E0B;
+}
+
+.input-with-icon input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1E293B;
+}
+
+.fortune-box {
+  background: #FEFCE8;
+  border: 1.5px solid #FDE047;
+  border-radius: 16px;
+  padding: 12px 16px;
+}
+
+.fortune-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #B45309;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #78350F;
+}
+
+.select-wrapper select {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #78350F;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.btn-destiny-navy {
+  background: #1D4ED8;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 40px;
+  padding: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-destiny-navy:hover {
+  background: #1E40AF;
+  transform: translateY(-1px);
+}
+
+/* ================= POPUP 2 STYLES ================= */
+.destiny-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.destiny-card {
+  background: #1C2541;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gold-badge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.destiny-city {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+}
+
+.destiny-element {
+  font-size: 0.85rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.destiny-element span {
+  color: #FBBF24;
+}
+
+.btn-gold-grad {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin: 2px 0 15px 0;
+}
+
+.calendar-mini {
+  margin-bottom: 12px;
+}
+
+.cal-days, .cal-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+}
+
+.cal-days span {
+  font-size: 0.7rem;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.cal-dates span {
+  font-size: 0.8rem;
+  padding: 6px 0;
+  position: relative;
+}
+
+.lucky-date {
+  border: 1px solid #F59E0B;
+  border-radius: 6px;
+  color: #FBBF24;
+  font-weight: 700;
+}
+
+.star-badge {
+  position: absolute;
+  top: -3px;
+  right: 1px;
+  font-size: 0.5rem;
+  color: #FBBF24;
+}
+
+.cal-note {
+  font-size: 0.75rem;
+  color: #CBD5E1;
+}
+
+.text-gold { color: #F59E0B; }
+
+.vibe-match-box {
+  text-align: center;
+  background: #0B132B;
+  padding: 16px;
+  border-radius: 14px;
+  margin: 10px 0;
+}
+
+.vibe-big-icon {
+  font-size: 2rem;
+  color: #CBD5E1;
+  margin-bottom: 8px;
+}
+
+.vibe-match-box h4 {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.vibe-match-box p {
+  font-size: 0.75rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.btn-blue-bright {
+  background: #2563EB;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ================= POPUP STYLES (NEW) ================= */
+.hidden {
+  display: none !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Modal Light Card (Popup 1) */
+.modal-card-light {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Modal Dark Card (Popup 2) */
+.modal-card-dark {
+  background: #0B132B;
+  border-radius: 28px;
+  padding: 28px;
+  max-width: 880px;
+  width: 100%;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* --- POPUP 1 --- */
+.pills-toggle {
+  background: #F1F5F9;
+  border-radius: 40px;
+  padding: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.pill-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #64748B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pill-btn.active-gold {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group-custom label {
+  display: block;
+  font-size: 0.82rem;
+  color: #64748B;
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  gap: 10px;
+  color: #F59E0B;
+}
+
+.input-with-icon input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1E293B;
+  background: transparent;
+}
+
+.fortune-box {
+  background: #FEFCE8;
+  border: 1.5px solid #FDE047;
+  border-radius: 16px;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.fortune-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #B45309;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #78350F;
+  position: relative;
+}
+
+.select-wrapper select {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #78350F;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 5px;
+  pointer-events: none;
+}
+
+.btn-destiny-navy {
+  background: #1D4ED8;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 40px;
+  padding: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn-destiny-navy:hover {
+  background: #1E40AF;
+}
+
+/* --- POPUP 2 --- */
+.destiny-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.destiny-card {
+  background: #1C2541;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+}
+
+.gold-badge {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.destiny-city {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  color: #FFFFFF;
+}
+
+.destiny-element {
+  font-size: 0.85rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.destiny-element span {
+  color: #FBBF24;
+}
+
+.btn-gold-grad {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin: 2px 0 15px 0;
+}
+
+.calendar-mini {
+  margin-bottom: 12px;
+}
+
+.cal-days, .cal-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+}
+
+.cal-days span {
+  font-size: 0.7rem;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.cal-dates span {
+  font-size: 0.8rem;
+  padding: 6px 0;
+  position: relative;
+  color: #E2E8F0;
+}
+
+.lucky-date {
+  border: 1px solid #F59E0B;
+  border-radius: 6px;
+  color: #FBBF24 !important;
+  font-weight: 700;
+}
+
+.star-badge {
+  position: absolute;
+  top: -3px;
+  right: 1px;
+  font-size: 0.5rem;
+  color: #FBBF24;
+}
+
+.cal-note {
+  font-size: 0.75rem;
+  color: #CBD5E1;
+}
+
+.text-gold { color: #F59E0B; }
+
+.vibe-match-box {
+  text-align: center;
+  background: #0B132B;
+  padding: 16px;
+  border-radius: 14px;
+  margin: 10px 0;
+}
+
+.vibe-big-icon {
+  font-size: 2rem;
+  color: #CBD5E1;
+  margin-bottom: 8px;
+}
+
+.vibe-match-box h4 {
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+}
+
+.vibe-match-box p {
+  font-size: 0.75rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.btn-blue-bright {
+  background: #2563EB;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}

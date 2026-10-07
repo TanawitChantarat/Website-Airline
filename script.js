@@ -587,3 +587,25 @@ function bookFlight(flightCode, routeCode, price) {
 
   switchTab('ticket');
 }
+
+// เปิด Popup 1 (เมื่อกดสายมู/สายชิลล์ จากรูปที่ 1)
+function openAuspiciousModal() {
+  document.getElementById('auspiciousInputModal').classList.remove('hidden');
+}
+
+// ปิด Popup 1 แล้วเปิด Popup 2 (เมื่อกด Discover Your Destiny)
+function discoverDestiny() {
+  document.getElementById('auspiciousInputModal').classList.add('hidden');
+  document.getElementById('auspiciousResultModal').classList.remove('hidden');
+}
+
+// ปิด Popup ทั้งหมด แล้วเข้าสู่หน้าบริการ/Pre-order (รูปที่ 4)
+function goToServicesPage() {
+  // 1. ซ่อน Popup ทั้งหมด
+  document.getElementById('auspiciousResultModal').classList.add('hidden');
+  
+  // 2. เรียกใช้ฟังก์ชัน switchTab ของคุณเพื่อเปิดแท็บบริการ
+  if (typeof switchTab === 'function') {
+    switchTab('services'); // หรือเปลี่ยนเป็น 'booking' ตามชื่อแท็บรูปที่ 4 ในเว็บของคุณ
+  }
+}

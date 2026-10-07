@@ -157,14 +157,17 @@
         <p style="color: #666; margin-bottom: 1.5rem;" data-i18n="exploreDesc">เลือกการเดินทางที่ส่งเสริมพลังงานบวกและเข้ากับสไตล์คุณที่สุด</p>
         
         <div class="grid-2">
-          <div class="vibe-box" onclick="quickSearchVibe('spiritual')">
+          <!-- 1. การ์ดสายมู -->
+          <div class="vibe-box" onclick="openAuspiciousModal()" style="cursor: pointer;">
             <i class="fa-solid fa-hands-praying vibe-icon"></i>
             <div>
               <h4 style="font-size: 1.1rem; font-weight: 700;" data-i18n="vibe1Title">สายมู & เสริมพลังชีวิต</h4>
               <p style="font-size: 0.85rem; color: #666;" data-i18n="vibe1Desc">เน้นไหว้พระ ขอพรโชคลาภ การงาน งานปัง เงินเข้า</p>
             </div>
           </div>
-          <div class="vibe-box" onclick="quickSearchVibe('relax')">
+
+          <!-- 2. การ์ดสายชิลล์ -->
+          <div class="vibe-box" onclick="openAuspiciousModal()" style="cursor: pointer;">
             <i class="fa-solid fa-umbrella-beach vibe-icon"></i>
             <div>
               <h4 style="font-size: 1.1rem; font-weight: 700;" data-i18n="vibe2Title">สายชิลล์ & ฮีลใจ</h4>
@@ -411,5 +414,104 @@
   </div>
 
   <script src="script.js"></script>
+<!-- ================= 1. POPUP 1: กรอกข้อมูลดวงชะตา ================= -->
+<div id="auspiciousInputModal" class="modal-overlay hidden">
+  <div class="modal-card-light">
+    <!-- Toggle Tabs -->
+    <div class="pills-toggle">
+      <button class="pill-btn"><i class="fa-solid fa-plane"></i> Standard Flight</button>
+      <button class="pill-btn active-gold">Auspicious Booking</button>
+    </div>
+
+    <!-- Input Form Grid -->
+    <div class="form-grid-2">
+      <div class="form-group-custom">
+        <label>วัน/เดือน/ปีเกิด</label>
+        <div class="input-with-icon">
+          <i class="fa-regular fa-calendar-days"></i>
+          <input type="text" value="15 ต.ค. 2535">
+        </div>
+      </div>
+      <div class="form-group-custom">
+        <label>เวลาเกิด</label>
+        <div class="input-with-icon">
+          <i class="fa-regular fa-clock"></i>
+          <input type="text" value="09:45 น.">
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlight Goal Box -->
+    <div class="fortune-box">
+      <span class="fortune-label">เรื่องที่ต้องการเสริมโชค</span>
+      <div class="select-wrapper">
+        <i class="fa-solid fa-briefcase"></i>
+        <select id="fortuneGoal">
+          <option value="work">ความก้าวหน้าทางการงาน</option>
+          <option value="money">โชคลาภการเงิน</option>
+          <option value="love">ความรักเมตตาเสริมเสน่ห์</option>
+        </select>
+        <i class="fa-solid fa-chevron-down arrow-icon"></i>
+      </div>
+    </div>
+
+    <!-- Main Submit Button -->
+    <button class="btn-destiny-navy" onclick="discoverDestiny()">
+      Discover Your Destiny <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+</div>
+
+<!-- ================= 2. POPUP 2: ผลลัพธ์ดวงชะตา & ปฏิทินมงคล ================= -->
+<div id="auspiciousResultModal" class="modal-overlay hidden">
+  <div class="modal-card-dark">
+    <div class="destiny-grid">
+      
+      <!-- Card 1: เมืองมงคล -->
+      <div class="destiny-card">
+        <div class="gold-badge"><i class="fa-solid fa-compass"></i> ทิศเหนือเสริมดวงงาน</div>
+        <div class="destiny-card-body">
+          <h2 class="destiny-city">เชียงใหม่</h2>
+          <p class="destiny-element">ราศีของคุณเหมาะกับ <span>"ธาตุลม"</span></p>
+        </div>
+        <button class="btn-gold-grad" onclick="goToServicesPage()">เลือกเมืองนี้</button>
+      </div>
+
+      <!-- Card 2: ปฏิทินวันธงชัย -->
+      <div class="destiny-card">
+        <h3 class="card-title">Auspicious Calendar</h3>
+        <p class="card-subtitle">พฤศจิกายน 2026</p>
+
+        <div class="calendar-mini">
+          <div class="cal-days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+          <div class="cal-dates">
+            <span>1</span><span>2</span><span>3</span><span>4</span>
+            <span class="lucky-date">5<i class="fa-solid fa-star star-badge"></i></span>
+            <span>6</span><span>7</span><span>8</span>
+            <span class="lucky-date">9<i class="fa-solid fa-star star-badge"></i></span>
+            <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+          </div>
+        </div>
+
+        <div class="cal-note">
+          <i class="fa-solid fa-star text-gold"></i> วันธงชัย: เดินทางราบรื่น สำเร็จผล
+        </div>
+      </div>
+
+      <!-- Card 3: Vibe Matching -->
+      <div class="destiny-card">
+        <h3 class="card-title">Vibe Matching</h3>
+        <div class="vibe-match-box">
+          <i class="fa-solid fa-mug-hot vibe-big-icon"></i>
+          <h4>วินเทจคาเฟ่ & สโลว์ไลฟ์</h4>
+          <p>อากาศเย็นสบาย เหมาะกับการพักผ่อนและรับพลังงานบวก</p>
+        </div>
+        <button class="btn-blue-bright" onclick="goToServicesPage()">ดูรายการเที่ยวบิน</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
 </body>
 </html>
